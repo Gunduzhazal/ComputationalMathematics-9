@@ -1,0 +1,88 @@
+
+## Data 605 - Assignment 9
+
+**Hazal Gunduz**
+
+**1. Exercise 11 (page 363) The price of one share of stock in the Pilsdorff Beer Company (see Exercise 8.2.12) is given by $Y_{n}$ on the nth day of the year. Finn observes that the differences $X_{n} = Y_{n+1} - Y_{n}$ appear to be independent random variables with a common distribution having mean µ = 0 and variance $σ^2 = 1/4$. If $Y_{1} = 100$, estimate the probability that $Y_{365}$ is **
+
+**(a) ≥ 100.**
+
+```{r}
+# a.Greater than or equal to 100
+
+1 - pnorm((100 - 100) / (0.5 * sqrt(365 - 1)))
+```
+
+P($Y_{365}$ ≥ 100) = 0.5
+
+**(b) ≥ 110.**
+
+```{r}
+# b.Greater than or equal to 110
+
+1 - pnorm((110 - 100) / (0.5 * sqrt(365 - 1)))
+```
+
+P($Y_{365}$ ≥ 110) = 0.147
+
+**(c) ≥ 120.**
+
+```{r}
+# c.Greater than or equal to 120
+
+1 - pnorm((120 - 100) / (0.5 * sqrt(365 - 1)))
+```
+
+P($Y_{365}$ ≥ 120) = 0.018
+
+**2. Calculate the expected value and variance of the binomial distribution using the moment generating function.**
+
+Moment generating function is:
+
+$M_z(t) = Expected(e^{tx})$
+
+Binomial distribution function is:
+
+$P_{x} = {n \choose x} p^x (1 - p)^{n-x}$
+
+Moment generating function and binomial distribution is:
+
+$M_z(t) = \sum_{x=0}^{n} e^{tx} * {n\choose x} p^x (1 - p)^{n-x}$
+
+M(t) = $(pe^{t} + 1 - p)^n$
+
+M’(t) = $npe^{t}(pe^{t} - p + 1)^{n-1}$
+
+M’(0) = $npe^0(pe^0 - p + 1)^{n-1} = np(p - p + 1)^{n-1} = np(1)^{n-1} = np$
+
+$M^n(t) = npe^t(pe^t - p + 1)^{n-2}(npe^t - p + 1)$
+
+$M^n(0) = npe^0(pe^0 - p + 1)^{n-2}(npe^0 - p + 1) = np(np - p + 1)$
+
+Expected binomial distribution is $np$ and the variance is: $np(− p + 1)$
+
+**3. Calculate the expected value and variance of the exponential distribution using the moment generating function.**
+
+Exponential distribution is: 
+
+$f(x) = λe^{-λx}$
+
+Moment generating function is: 
+
+$M(t) = \int_{0}^{\inf} e^{tx} * λe^{-λx} = - λ / t - λ$
+
+Expected value is:
+
+M′(t) =  $λ / (t -  λ)^2$
+
+M′(0) = 1
+
+$M^n(t) = - 2λ / (t - λ)^3$
+
+$M^n(0) = - 2λ / (- λ)^3 = 2 / λ^2$
+
+The expected value is $1 / λ$ and the variance is $2 / λ^2$
+
+Rpubs =>  https://rpubs.com/gunduzhazal/1020243
+
+
